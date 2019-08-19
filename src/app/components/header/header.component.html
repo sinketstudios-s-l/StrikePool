@@ -1,0 +1,18 @@
+<ion-header no-border>
+  <ion-toolbar color="light" mode="ios" >
+    <ion-button fill="clear" (click)="openMenu()" slot="start">
+      <ion-icon name="menu" color="dark"></ion-icon>
+    </ion-button>
+   
+      <img src="../../assets/img/logo.png"  class="brandLogo">
+ 
+    <ion-avatar *ngIf="user" slot="end" class="avatar ion-margin-end"  (click)="userMenu()">
+      <ion-img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=1000"></ion-img>
+    </ion-avatar>
+
+    <ion-avatar *ngIf="!user" slot="end" class="avatar ion-margin-end"  (click)="userMenu()">
+      <ion-img src="http://vanilla.stackideas.com/others/photos/photos/329-miniclip-8-ball-pool-avatar-15/download"></ion-img>
+    </ion-avatar>
+
+  </ion-toolbar>
+</ion-header>

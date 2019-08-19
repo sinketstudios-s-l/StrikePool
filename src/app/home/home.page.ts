@@ -10,14 +10,7 @@ export class HomePage {
 
   constructor(private menuCtrl: MenuController) {}
 
-  openMenu(){
-    this.menuCtrl.enable(true, 'main');
-    this.menuCtrl.open('main')
-  }
 
-  userMenu(){
-    this.menuCtrl.enable(true, 'userMenu');
-    this.menuCtrl.open('userMenu')
-  }
 
+  user: string= ""
 }

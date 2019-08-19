@@ -1,36 +1,37 @@
 <ion-app>
     <!-- USER MENU -->
-    <ion-menu side="start" menuId="userMenu" contentId="main" type="push">
+    <ion-menu side="end" menuId="userMenu" contentId="main" class="userMenu">
         <ion-header>
           <ion-toolbar color="primary">
-            <ion-title>User Menu</ion-title>
+            <ion-title no-padding>Bienvenido de nuevo</ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content>
           <ion-list>
-            <ion-item>Menu Item</ion-item>
-            <ion-item>Menu Item</ion-item>
-            <ion-item>Menu Item</ion-item>
-            <ion-item>Menu Item</ion-item>
-            <ion-item>Menu Item</ion-item>
+            <ion-item>Mis Reservas</ion-item>
+            <ion-item>Torneos</ion-item>
+            <ion-item>Socio</ion-item>
           </ion-list>
         </ion-content>
       </ion-menu>
     
     <!-- NORMAL MENU -->
-    <ion-menu side="start" menuId="main" contentId="main" type="push">
+    <ion-menu side="start" menuId="main" contentId="main" >
         <ion-header>
           <ion-toolbar color="primary">
-            <ion-title>Start Menu</ion-title>
+            <ion-title>Menú</ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content>
+          
           <ion-list>
-            <ion-item>Menu Item</ion-item>
-            <ion-item>Menu Item</ion-item>
-            <ion-item>Menu Item</ion-item>
-            <ion-item>Menu Item</ion-item>
-            <ion-item>Menu Item</ion-item>
+
+            <ion-item *ngFor="let comp of components" 
+                      [routerLink]="comp.redirectTo" detail>
+                <ion-icon slot="start" [name]="comp.icon" mode></ion-icon>
+                <ion-label>{{comp.name}}</ion-label>
+            </ion-item>
+            
           </ion-list>
         </ion-content>
       </ion-menu>
