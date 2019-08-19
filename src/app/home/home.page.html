@@ -1,14 +1,17 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header no-border>
+  <ion-toolbar color="light" mode="ios">
+    <ion-button fill="clear" (click)="openMenu()">
+      <ion-icon name="menu" color="dark"></ion-icon>
+    </ion-button>
     <ion-title>
-      Ionic Blank
+      StrikePool
     </ion-title>
+    <ion-avatar slot="end" class="avatar ion-margin-end"  (click)="userMenu()">
+      <ion-img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=1000"></ion-img>
+    </ion-avatar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  
 </ion-content>
