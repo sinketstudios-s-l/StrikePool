@@ -4,6 +4,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},  { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
+  { path: 'torneos', loadChildren: './pages/torneos/torneos.module#TorneosPageModule' },
+  { path: 'socios', loadChildren: './pages/socios/socios.module#SociosPageModule' },
+  { path: 'servicios', loadChildren: './pages/servicios/servicios.module#ServiciosPageModule' },
+
+
 
 ];
 

@@ -1,22 +1,70 @@
 <ion-app>
+  <!-- UNLOGGED USER MENU -->
+    <ion-menu *ngIf="!userAcc" side="end" menuId="userMenu" contentId="main" class="userMenu" type="push">
+        
+        <ion-content style="text-align: center;" class="formContent">
+          
+          <div class="formRegister" id="regForm">
+
+            <ion-img src="../assets/img/logo.png" class="logoForm"></ion-img>
+
+            <ion-input [(ngModel)]="username" type="text" class="inp" padding placeholder="Usuario"></ion-input>
+
+            <ion-input [(ngModel)]="email" type="email" class="inp" padding placeholder="Correo Electrónico"></ion-input>
+                     
+            <ion-input [(ngModel)]="passwd" type="password" class="inp" padding placeholder="Contraseña"></ion-input>
+            
+            <ion-button color="primary" (click)="register()" class="btn">Registrarse</ion-button>
+
+            <br>
+            <ion-label class="formAccChange">Ya tienes cuenta? <span (click)="logForm()">Inicia Sesión</span> </ion-label>
+          
+          </div>
+
+          <div class="formLogin" id="logForm">
+
+              <ion-img src="../assets/img/logo.png" class="logoForm"></ion-img>
+  
+              <ion-input [(ngModel)]="username" type="text" class="inp" padding placeholder="Usuario"></ion-input>
+                       
+              <ion-input [(ngModel)]="password" type="password" class="inp" padding placeholder="Contraseña"></ion-input>
+              
+              <ion-button color="primary" class="btn" (click)="login()"> Iniciar Sesión</ion-button>
+
+              <br>
+              <ion-label class="formAccChange">Todavía no tienes cuenta? <span (click)="regForm()">Regístrate</span> </ion-label>
+            </div>
+
+
+        </ion-content>
+      </ion-menu>
+
     <!-- USER MENU -->
-    <ion-menu side="end" menuId="userMenu" contentId="main" class="userMenu">
-        <ion-header>
-          <ion-toolbar color="primary">
-            <ion-title no-padding>Bienvenido de nuevo</ion-title>
+    <ion-menu *ngIf="userAcc" side="end" menuId="userMenu" contentId="main" class="userMenu" type="push">
+        <ion-header >
+          <ion-toolbar padding color="light">
+            <ion-title no-padding>Bienvenido  de nuevo! {{ username }}</ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content>
           <ion-list>
-            <ion-item>Mis Reservas</ion-item>
-            <ion-item>Torneos</ion-item>
-            <ion-item>Socio</ion-item>
+              <ion-item *ngFor="let compU of componentsUserMenu" 
+                        [routerLink]="compU.redirectTo" detail (click)="closeMenu()">
+                <ion-icon slot="start" [name]="compU.icon" mode></ion-icon>
+                <ion-label>{{compU.name}}</ion-label>
+             </ion-item>
+            <ion-item (click)="darkMode($event)">
+                <ion-label>Dark Mode</ion-label>
+                <ion-toggle [(ngModel)]="aaaa" slot="end" name="asdasd"></ion-toggle>
+            </ion-item>
           </ion-list>
         </ion-content>
       </ion-menu>
+
+
     
     <!-- NORMAL MENU -->
-    <ion-menu side="start" menuId="main" contentId="main" >
+    <ion-menu side="start" menuId="main" contentId="main" type="push">
         <ion-header>
           <ion-toolbar color="primary">
             <ion-title>Menú</ion-title>
@@ -26,8 +74,8 @@
           
           <ion-list>
 
-            <ion-item *ngFor="let comp of components" 
-                      [routerLink]="comp.redirectTo" detail>
+            <ion-item *ngFor="let comp of componentsMenu" 
+                      [routerLink]="comp.redirectTo" detail (click)="closeMenu()">
                 <ion-icon slot="start" [name]="comp.icon" mode></ion-icon>
                 <ion-label>{{comp.name}}</ion-label>
             </ion-item>

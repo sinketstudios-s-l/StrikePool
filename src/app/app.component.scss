@@ -1,3 +1,38 @@
-.userMenu {
-    --width: 65%;
+.inp {
+    margin: 1rem auto;
+    width: 80%;
+    --background: #fff !important;
+    border: 1px solid #f1f1f1;
+    border-radius: 5px;
+}
+
+.formContent{
+    --background: #dbdbdb;
+}
+
+.logoForm{
+    margin: 0 auto;
+    width: 150px;
+}
+
+.btn {
+    width: 80%;
+
+}
+
+.formLogin{
+    display: none;
+}
+
+.formLogin, .formRegister{
+    margin-top:40%; 
+}
+
+.formAccChange{
+    opacity: .7;
+}
+
+.formAccChange span{
+    color: rgb(0, 110, 255);
+    cursor: pointer;
 }
