@@ -1,6 +1,6 @@
 <ion-app>
   <!-- UNLOGGED USER MENU -->
-    <ion-menu *ngIf="!userAcc" side="end" menuId="userMenu" contentId="main" class="userMenu" type="push">
+    <ion-menu *ngIf="!user" side="end" menuId="userMenu" contentId="main" class="userMenu" type="push">
         
         <ion-content style="text-align: center;" class="formContent">
           
@@ -25,9 +25,9 @@
 
               <ion-img src="../assets/img/logo.png" class="logoForm"></ion-img>
   
-              <ion-input [(ngModel)]="username" type="text" class="inp" padding placeholder="Usuario"></ion-input>
+              <ion-input [(ngModel)]="email" type="text" class="inp" padding placeholder="Email"></ion-input>
                        
-              <ion-input [(ngModel)]="password" type="password" class="inp" padding placeholder="Contraseña"></ion-input>
+              <ion-input [(ngModel)]="passwd" type="password" class="inp" padding placeholder="Contraseña"></ion-input>
               
               <ion-button color="primary" class="btn" (click)="login()"> Iniciar Sesión</ion-button>
 
@@ -40,10 +40,10 @@
       </ion-menu>
 
     <!-- USER MENU -->
-    <ion-menu *ngIf="userAcc" side="end" menuId="userMenu" contentId="main" class="userMenu" type="push">
+    <ion-menu *ngIf="user" side="end" menuId="userMenu" class="userMenu" contentId="main" class="userMenu" type="push">
         <ion-header >
-          <ion-toolbar padding color="light">
-            <ion-title no-padding>Bienvenido  de nuevo! {{ username }}</ion-title>
+          <ion-toolbar padding >
+            <ion-title no-padding padding-top>{{ username }}</ion-title>
           </ion-toolbar>
         </ion-header>
         <ion-content>
@@ -57,6 +57,7 @@
                 <ion-label>Dark Mode</ion-label>
                 <ion-toggle [(ngModel)]="aaaa" slot="end" name="asdasd"></ion-toggle>
             </ion-item>
+
           </ion-list>
         </ion-content>
       </ion-menu>
@@ -64,9 +65,9 @@
 
     
     <!-- NORMAL MENU -->
-    <ion-menu side="start" menuId="main" contentId="main" type="push">
+    <ion-menu side="start" menuId="main" contentId="main" type="push" class="normalMenu">
         <ion-header>
-          <ion-toolbar color="primary">
+          <ion-toolbar>
             <ion-title>Menú</ion-title>
           </ion-toolbar>
         </ion-header>
@@ -74,7 +75,7 @@
           
           <ion-list>
 
-            <ion-item *ngFor="let comp of componentsMenu" 
+            <ion-item lines="full" *ngFor="let comp of componentsMenu" 
                       [routerLink]="comp.redirectTo" detail (click)="closeMenu()">
                 <ion-icon slot="start" [name]="comp.icon" mode></ion-icon>
                 <ion-label>{{comp.name}}</ion-label>

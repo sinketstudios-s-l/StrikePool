@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
+import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,22 @@ import { MenuController } from '@ionic/angular';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private menuCtrl: MenuController) { }
+  mainuser: AngularFirestoreDocument
+  sub
+  user: string = ""
+  picture:string=""
+
+  constructor(private menuCtrl: MenuController, private userSvc: UserService, private afs: AngularFirestore) { 
+
+    this.mainuser = afs.doc(`users/${userSvc.getUID()}`)
+    this.sub = this.mainuser.valueChanges().subscribe(event => {
+      this.user = event.username
+      this.picture = event.picture
+    })
+
+  }
+
+
 
   ngOnInit() {}
 

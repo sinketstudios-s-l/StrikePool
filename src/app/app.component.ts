@@ -5,7 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from './services/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AppComponent implements OnInit{
 
-  userAcc:string=""
+  private user:string= ""
 
   username:string = ""
   email:string = ""
@@ -24,6 +25,10 @@ export class AppComponent implements OnInit{
   picture: string = "https://firebasestorage.googleapis.com/v0/b/strikepool-terrassa.appspot.com/o/00000000000000000000000000000000.png.jpg?alt=media&token=281bbf98-30d9-4911-b451-081d87eb82b8"
 
   socio: boolean = false
+
+  mainuser: AngularFirestoreDocument
+  sub
+  private uid: string
   
   componentsMenu: Componentes [] = [
     {
@@ -74,7 +79,8 @@ export class AppComponent implements OnInit{
       icon: 'settings',
       name: 'Configuracion',
       redirectTo: '/settings'
-    },
+    }
+    
 
   ];
 
@@ -90,11 +96,29 @@ export class AppComponent implements OnInit{
 
   ) {
     this.initializeApp();
+
+    
+
+
   }
 
   ngOnInit() {
 
-    this.userAcc = this.userSvc.getUsername()
+   this.afAuth.user.subscribe( res => {
+      this.user = res.email
+      this.uid = res.uid
+      
+     console.log(this.uid)
+    })
+    
+    this.mainuser = this.afstore.doc(`users/${this.userSvc.getUID()}`)
+    this.sub = this.mainuser.valueChanges().subscribe(event =>{
+      this.username = event.username
+      this.picture = event.picture
+      
+      console.log(this.picture)
+    })
+    
   }
 
   initializeApp() {
@@ -127,15 +151,16 @@ export class AppComponent implements OnInit{
       })
 
       this.userSvc.setUser({
-        username: email,
+        email,
         uid: res.user.uid
       })
+
 
       this.presentAlert('Perfecto', 'Estas registrado')
       document.getElementById('regForm').style.display = "none"
       document.getElementById('logForm').style.display = "block"
      
-      this.userAcc = this.userSvc.getUsername()
+      
 
 
     } catch(err){
@@ -154,40 +179,25 @@ export class AppComponent implements OnInit{
     
       if(res.user) {
         this.userSvc.setUser({
-          username: email,
+          email,
           uid: res.user.uid
         })
 
         this.presentAlert('Perfecto', 'Estas logeado')
-
-        this.afAuth.user.subscribe( res => {
-          this.userAcc = res.email
-          console.log('res: '+res)
-        })
-
-        console.log(this.userAcc)
+        
+        console.log(this.user)
       }
     
     } catch (err){
       console.dir(err)
-      console.log(this.userAcc)
+      
     }
 
 
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 

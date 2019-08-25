@@ -1,5 +1,12 @@
-.ion-card-strikePool{
+.ion-card-strikePool, .card-strikepool{
     position: relative;
+    --background: #424242;
+    --color: #fff;
+}
+
+.card-strikepool{
+    width: 250px;
+    height: 500px;
 }
 
 .ion-card-text{

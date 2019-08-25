@@ -1,13 +1,13 @@
 <ion-header no-border>
-  <ion-toolbar color="light" mode="ios" >
+  <ion-toolbar  mode="ios" >
     <ion-button fill="clear" (click)="openMenu()" slot="start">
-      <ion-icon name="menu" color="dark"></ion-icon>
+      <ion-icon name="menu" color="light"></ion-icon>
     </ion-button>
    
       <img src="../../assets/img/logo.png"  class="brandLogo">
  
     <ion-avatar *ngIf="user" slot="end" class="avatar ion-margin-end"  (click)="userMenu()">
-      <ion-img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&s=1000"></ion-img>
+      <ion-img [src]="picture"></ion-img>
     </ion-avatar>
 
     <ion-avatar *ngIf="!user" slot="end" class="avatar ion-margin-end"  (click)="userMenu()">

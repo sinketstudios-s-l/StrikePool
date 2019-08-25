@@ -6,7 +6,6 @@ import { UserService } from './user.service';
 @Injectable()
 export class AuthService implements CanActivate {
 
-    userAcc: string
 
 	constructor(private router: Router, private user: UserService) {
 
@@ -14,10 +13,10 @@ export class AuthService implements CanActivate {
 
 	async canActivate(route) {
 		if(await this.user.isAuthenticated()) {
+            
             return true
-            this.userAcc = this.user.getUsername()
 		}
-        this.userAcc = ""
+        
 		return false
 	}
 }

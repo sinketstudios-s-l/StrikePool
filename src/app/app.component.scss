@@ -1,14 +1,32 @@
 .inp {
     margin: 1rem auto;
     width: 80%;
-    --background: #fff !important;
-    border: 1px solid #f1f1f1;
+    --background: #262626 !important;
+
     border-radius: 5px;
 }
 
-.formContent{
-    --background: #dbdbdb;
+.normalMenu ion-toolbar {
+    --color: #ffffff;
 }
+
+.normalMenu ion-list ion-item{
+    --color: #ffffff;
+    --background: #2d2d2d;
+    --color-hover: #353535;
+}
+
+.userMenu ion-toolbar {
+    --color: #ffffff;
+}
+
+.userMenu ion-list ion-item{
+    --color: #ffffff;
+    --background: #2d2d2d;
+    --color-hover: #353535;
+}
+
+
 
 .logoForm{
     margin: 0 auto;
